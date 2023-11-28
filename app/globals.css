@@ -440,6 +440,10 @@ body{
   font-weight: 700;
 }
 
+.query-results-table-pagination-dark{
+  color: var(--dark-background-text-secondary);
+}
+
 .query-results-table-head-cells-dark{
   color:var(--dark-background-text-primary);
   background-color: var(--dark-background-ternary);

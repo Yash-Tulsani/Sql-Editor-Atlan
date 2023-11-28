@@ -69,6 +69,7 @@ export default function QueryResultsTable() {
   const resultTableRowsClassName=`query-results-table-data-row ${theme==='dark'?'query-results-table-data-row-dark':'query-results-table-data-row-light'}`
   const resultTableDataCellsClassName=`query-results-table-data-cells ${theme==='dark'?'query-results-table-data-cells-dark':'query-results-table-data-cells-light'}`
   const resultTableFooterClassName=`query-results-table-footer ${theme==='dark'?'query-results-table-footer-dark':'query-results-table-footer-light'}`
+  const resultTablePaginationClassName=`query-results-table-pagination ${theme==='dark'?'query-results-table-pagination-dark':'query-results-table-pagination-light'}`
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -162,7 +163,7 @@ export default function QueryResultsTable() {
           sx={{height:"fit-content"}}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          className='query-results-table-pagination'
+          className={resultTablePaginationClassName}
         />
       </div>
     </Paper>
