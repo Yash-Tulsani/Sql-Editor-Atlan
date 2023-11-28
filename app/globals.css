@@ -441,23 +441,22 @@ body{
 }
 
 .query-results-table-pagination-dark{
-  color: var(--dark-background-text-secondary);
+  color: var(--dark-background-text-secondary) !important;
 }
 
 .query-results-table-head-cells-dark{
-  color:var(--dark-background-text-primary);
-  background-color: var(--dark-background-ternary);
+  color:var(--dark-background-text-primary) !important;
+  background-color: var(--dark-background-ternary) !important;
 }
 
 .query-results-table-head-cells-light{
-  color:var(--light-background-text-primary);
-  background-color: var(--light-background-ternary);
+  color:var(--light-background-text-primary) !important;
+  background-color: var(--light-background-ternary) !important;
 }
 
 .query-results-table-pagination{
   background-color: transparent;
 }
-
 
 .query-results-table-data-cells{
   border: 0.009pt solid var(--dark-background-border);

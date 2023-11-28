@@ -29,6 +29,20 @@ const SqlPlayground = () => {
         }
     }
 
+    const handleAddTabClick=()=>{
+        const updatedOpenedQueryTabs=[...openedQueryTabs];
+        const newQuery={
+                id: 'Query '+101+Math.floor(Math.random()*899),
+                code: '',
+                resultFilePath: '',
+                status: 'Failed',
+                timeToLoad: 'N/A',
+                rowsReturned: 'N/A',
+                rowsAffected: 'N/A'
+            }
+    }
+
+
     const handleQueryExecute=async ()=>{
         if(openedQueryTabs.length==0){
             return;
@@ -86,7 +100,7 @@ const SqlPlayground = () => {
                     }
                 </div>
                 }
-                <div className="sql-playground-add-tab-btn">
+                <div className="sql-playground-add-tab-btn" onClick={handleAddTabClick}>
                     <Image src={`/assets/Images/${theme}-mode-add-tab.svg`} className="sql-playground-add-tab-icon" width={20} height={20} alt="Add Tab"/>
                 </div>
             </div>
