@@ -48,13 +48,16 @@ const QueryTab = ({query,idx,handleCloseTab}) => {
   useEffect(()=>{
     setCloseIconSvg(getCloseIconSrc());
   },[selectedTab,theme])
+
+  // Local Variables
+  const sqlPlaygroundQueryTabNameClassName=(theme=='dark')?"sql-playground-query-tab-name-dark":"sql-playground-query-tab-name-light";
  
 
   return (
     <div className={isActive(idx)?"sql-playground-query-tab-selected":"sql-playground-query-tab"} onClick={()=>handleTabClick(idx)}>
-        <span className={isActive(idx)?"sql-playground-query-tab-name-selected":"sql-playground-query-tab-name"}>{query.id}</span>
+        <span className={isActive(idx)?"sql-playground-query-tab-name-selected":sqlPlaygroundQueryTabNameClassName}>{query.id}</span>
         <span className="sql-playground-query-tab-close" onClick={()=>handleCloseTab(idx)}>
-            <Image src={"/assets/Images/"+closeIconSvg} width={20} height={20} className={isActive(idx)?'sql-playground-query-tab-close-icon-selected':'sql-playground-query-tab-close-icon'} alt="Close"/>
+            <Image src={"/assets/Images/"+closeIconSvg} width={15} height={15} className={isActive(idx)?'sql-playground-query-tab-close-icon-selected':'sql-playground-query-tab-close-icon'} alt="Close"/>
         </span>
     </div>
   )

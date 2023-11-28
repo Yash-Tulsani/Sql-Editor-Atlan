@@ -15,7 +15,8 @@
   --light-background: #e9eaeb;
   --light-background-secondary: #F9FAFB;
   --light-background-ternary: #cdcfd4;
-  --light-background-text-primary: #111827;
+  --light-background-text-primary: #1e2a44;
+  --light-background-text-secondary: #1f2a42;
   --light-background-highlight: #e7e7e7;
 }
 
@@ -233,7 +234,7 @@ body{
   justify-content: center;
   align-items: center;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .sql-editor-fallback-text-dark{
@@ -302,11 +303,18 @@ body{
 }
 
 
-.sql-playground-query-tab-name,.sql-playground-query-tab-name-selected{
-  color: var(--dark-background-text-primary);
+.sql-playground-query-tab-name-dark,.sql-playground-query-tab-name-light,.sql-playground-query-tab-name-selected{
   font-size: 0.85rem;
   text-wrap: nowrap;
   font-weight: 600;
+}
+
+.sql-playground-query-tab-name-dark{
+  color: var(--dark-background-text-primary);
+}
+
+.sql-playground-query-tab-name-light{
+  color: var(--light-background-text-secondary);
 }
 
 .sql-playground-query-tab-name-selected{
@@ -359,6 +367,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.9rem;
 }
 
 .query-result-panel-fallback-text-dark{
@@ -571,4 +580,52 @@ body{
 .download-table-options-list{
   background-color: var(--dark-background-highlight);
   color: var(--dark-background-text-secondary);
+}
+
+
+/* Media queries */
+
+/* For devices smaller than 768px */
+
+@media screen and (max-width: 768px){
+  body{
+    min-height: calc(100vh - 16px);;
+    height: fit-content;
+  }
+  .app-title{
+    font-weight: 800;
+    font-size: max(20px,min(1.5vw,35px));
+    line-height: 1;
+    letter-spacing: 0.05rem;
+  }
+  .navbar-logo{
+    width: 60px;
+    height: 60px;
+  }
+  .mode-switch-icon{
+    width: 15px;
+    height: 15px;
+  }
+  .sql-playground-execute-btn,.sql-playground-clear-btn{
+    width: 4.5rem;
+    height: 60%;
+    border-radius: 25px;
+    font-size: 0.7rem;
+  }
+  .sql-editor-fallback-text{
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+  .sql-playground-code-editor{
+    font-size: 0.8rem;
+  }
+  .sql-playground-query-tab-name,.sql-playground-query-tab-name-selected{
+    font-size: 0.75rem;
+    text-wrap: nowrap;
+    font-weight: 600;
+  }
+  .sql-playground-query-tab-close-icon{
+    width: 15px;
+    height: 15px;
+  }
 }
