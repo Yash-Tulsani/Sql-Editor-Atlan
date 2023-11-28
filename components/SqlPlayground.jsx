@@ -30,16 +30,20 @@ const SqlPlayground = () => {
     }
 
     const handleAddTabClick=()=>{
+        console.log('Add Tab Clicked')
         const updatedOpenedQueryTabs=[...openedQueryTabs];
         const newQuery={
-                id: 'Query '+101+Math.floor(Math.random()*899),
-                code: '',
+                id: 'Query '+(50+Math.floor(Math.random()*50)),
+                code: "-- Write your SQL code here",
                 resultFilePath: '',
                 status: 'Failed',
                 timeToLoad: 'N/A',
                 rowsReturned: 'N/A',
                 rowsAffected: 'N/A'
-            }
+        }
+        updatedOpenedQueryTabs.push(newQuery);
+        setOpenedQueryTabs(updatedOpenedQueryTabs);
+        setSelectedTab(updatedOpenedQueryTabs.length-1);
     }
 
 
