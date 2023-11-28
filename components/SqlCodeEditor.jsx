@@ -1,11 +1,29 @@
 "use client"
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import Editor, { Monaco } from "@monaco-editor/react";
 import { SqlContext } from "@/Context/SqlContext";
 
 const SqlCodeEditor = () => {
   const editorRef = useRef(null);
-  const {theme}=useContext(SqlContext);
+
+  // Global States
+  const {theme,openedQueryTabs,selectedTab,editorCode,setEditorCode,setIsPageLoading}=useContext(SqlContext);
+
+  // Side Effects
+  useEffect(()=>{
+    const queryCode=openedQueryTabs[selectedTab].code;
+    setEditorCode(queryCode);
+  },[])
+
+  useEffect(()=>{
+    const queryCode=openedQueryTabs[selectedTab].code;
+    setEditorCode(queryCode);
+  },[selectedTab])
+
+  // Event Handlers
+  const handleCodeChange=(e)=>{
+    setEditorCode(e);
+  }
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
@@ -122,11 +140,12 @@ const SqlCodeEditor = () => {
       <Editor
         height="100%"
         defaultLanguage="sql"
-        defaultValue="-- Write your SQL code here"
+        defaultValue={editorCode}
+        value={editorCode}
         onMount={handleEditorDidMount}
         theme={theme=='dark'?"vs-dark":"light"}
         className="sql-playground-code-editor"
-        
+        onChange={handleCodeChange}
       />
   );
 };

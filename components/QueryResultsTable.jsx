@@ -19,254 +19,20 @@ import Divider from '@mui/material/Divider';
 import Image from 'next/image'
 import { useContext } from 'react';
 import { SqlContext } from '@/Context/SqlContext';
+import { mergeObject } from '@/utils/helpers';
+import useDownloader from 'react-use-downloader';
 
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
+export default function QueryResultsTable() {
+  // Global States
+  const {theme,resultTableHeaders,resultTableRows,tableName}=useContext(SqlContext)
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
-
-export default function StickyHeadTable() {
-  const {theme}=useContext(SqlContext)
+  // Local States
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const {download}= useDownloader();
 
+  // Event Handlers
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -275,6 +41,18 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleDownloadCSV= ()=>{
+    const fileUrl=`assets/data/csv/${tableName}.csv`;
+    const fileName=`${tableName}.csv`;
+    download(fileUrl,fileName);
+  }
+
+  const handleDownloadJSON= ()=>{
+    const fileUrl=`assets/data/json/${tableName}.json`;
+    const fileName=`${tableName}.json`;
+    download(fileUrl,fileName);
+  }
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -286,6 +64,12 @@ export default function StickyHeadTable() {
     setAnchorEl(null);
   };
 
+  // Local Variables
+  const resultTableHeadersClassName=`query-results-table-head-cells ${theme==='dark'?'query-results-table-head-cells-dark':'query-results-table-head-cells-light'}`
+  const resultTableRowsClassName=`query-results-table-data-row ${theme==='dark'?'query-results-table-data-row-dark':'query-results-table-data-row-light'}`
+  const resultTableDataCellsClassName=`query-results-table-data-cells ${theme==='dark'?'query-results-table-data-cells-dark':'query-results-table-data-cells-light'}`
+  const resultTableFooterClassName=`query-results-table-footer ${theme==='dark'?'query-results-table-footer-dark':'query-results-table-footer-light'}`
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -295,12 +79,12 @@ export default function StickyHeadTable() {
         <Table stickyHeader aria-label="sticky table">
           <TableHead className=''>
             <TableRow>
-              {columns.map((column) => (
+              {resultTableHeaders.map((column) => (
                 <TableCell
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
-                  className='query-results-table-head-cells'
+                  className={resultTableHeadersClassName}
                 >
                   {column.label}
                 </TableCell>
@@ -308,18 +92,16 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {resultTableRows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row,idx) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code} className="query-results-table-data-row">
-                    {columns.map((column) => {
+                  <TableRow hover role="checkbox" tabIndex={-1} key={idx} className={resultTableRowsClassName}>
+                    {resultTableHeaders.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align} className='query-results-table-data-cells'>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
+                        <TableCell key={column.id} align={column.align} className={resultTableDataCellsClassName}>
+                          {mergeObject(value)}
                         </TableCell>
                       );
                     })}
@@ -329,7 +111,7 @@ export default function StickyHeadTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <div className='query-results-table-footer'>
+      <div className={resultTableFooterClassName}>
         <Fab color="default" aria-label="download" size='small' onClick={handleDownloadBtnClick}>
           <DownloadIcon/>
         </Fab>  
@@ -349,7 +131,7 @@ export default function StickyHeadTable() {
           }}
         >
           <List className='download-table-options-list'>
-            <ListItem disablePadding>
+            <ListItem disablePadding onClick={handleDownloadCSV}>
               <ListItemButton sx={{gap:'0px'}}>
                 <ListItemIcon>
                   {
@@ -359,7 +141,7 @@ export default function StickyHeadTable() {
                 <ListItemText primary="Download CSV" primaryTypographyProps={{ style: { fontSize: '0.9rem' } }} className='download-table-options-text'/>
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding>
+            <ListItem disablePadding onClick={handleDownloadJSON}>
               <ListItemButton>
                 <ListItemIcon>
                   {
@@ -374,7 +156,7 @@ export default function StickyHeadTable() {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={rows.length}
+          count={resultTableRows.length}
           rowsPerPage={rowsPerPage}
           page={page}
           sx={{height:"fit-content"}}

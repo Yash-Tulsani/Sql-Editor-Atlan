@@ -1,7 +1,10 @@
+
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import SqlContextComponent from '@/Context/SqlContext'
+import SkeletonLayout from '@/components/SkeletonLayout'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,10 +14,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <SqlContextComponent>
-        <body className={inter.className}>
+        <body className={inter.className} >
+          <SkeletonLayout/>
           <Navbar/>
           {children}
         </body>

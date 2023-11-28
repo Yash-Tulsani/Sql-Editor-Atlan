@@ -22,6 +22,7 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-resizable-panels": "^0.0.61"
+    "react-resizable-panels": "^0.0.61",
+    "react-use-downloader": "^1.2.4"
   }
 }

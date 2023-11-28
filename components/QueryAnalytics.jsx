@@ -1,49 +1,33 @@
 import { SqlContext } from "@/Context/SqlContext"
 import { useContext } from "react"
-
-const analyticsList=[
-  {
-    name: 'Status',
-    data: 'Succeeded'
-  },
-  {
-    name: 'Time to load',
-    data: '658ms'
-  },
-  {
-    name: 'Rows Returned',
-    data: 'NA'
-  },
-  {
-    name: 'Rows Affected',
-    data: 'NA'
-  },
-  
-]
+import { camelCaseToSentenceCase } from "@/utils/helpers"
 
 export default function QueryAnalytics() {
-  const {theme}=useContext(SqlContext)
+  // Global States
+  const {theme,queryAnalytics}=useContext(SqlContext)
 
+  // Local Variables
+  const queryAnalyticsContainerClassName=`query-analytics-container`+` `+(theme==='dark'?'query-analytics-container-dark':'query-analytics-container-light')
   const headerClassName=`query-analytics-header`+ ` `+(theme==='dark'?'query-analytics-header-dark':'query-analytics-header-light')
   const idClassName=`query-analytics-id`+` `+(theme==='dark'?'query-analytics-id-dark':'query-analytics-id-light')
   const textClassName=`query-analytics-text`+` `+(theme==='dark'?'query-analytics-text-dark':'query-analytics-text-light')
   const analyticClassName=`query-analytic`+` `+(theme==='dark'?'query-analytic-dark':'query-analytic-light')
   
   return (
-    <div className="query-analytics-container">
+    <div className={queryAnalyticsContainerClassName}>
       <div className={headerClassName}>
-        QueryAnalytics
+        Query Analytics
       </div>
       <div className="query-analytics-list">
         {
-          analyticsList.map((analytics,idx)=>{
+          Object.entries(queryAnalytics).map((analytics,idx)=>{
             return (
                 <div className={analyticClassName} key={idx}>
                     <div className={idClassName}>
-                        {analytics.name}
+                        {camelCaseToSentenceCase(analytics[0])}
                     </div>
                     <div className={textClassName}>
-                        {analytics.data}
+                        {analytics[1]}
                     </div>
                 </div>
             )

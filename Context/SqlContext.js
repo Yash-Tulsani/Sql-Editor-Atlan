@@ -5,10 +5,30 @@ import {createContext, useState} from 'react'
 export const SqlContext=createContext()
 
 const SqlContextComponent=(props)=>{
-    const [theme,setTheme]=useState('dark');
-    
+    // States
+    const [isPageLoading,setIsPageLoading]=useState(true);
+    const [theme,setTheme]=useState('light');
+    const [openedQueryTabs,setOpenedQueryTabs]=useState([]);
+    const [selectedTab,setSelectedTab]=useState(null);
+    const [resultTableHeaders,setResultTableHeaders]=useState([]);
+    const [resultTableRows,setResultTableRows]=useState([]);
+    const [tableName,setTableName]=useState(null);
+    const [recentQueries,setRecentQueries]=useState([]); // [{id,code,tableName,status,timeToLoad,rowsReturned,rowsAffected,resultColumns}
+    const [editorCode,setEditorCode]=useState("-- Write your SQL code here")
+    const [queryAnalytics,setQueryAnalytics]=useState({
+        status: 'Not Executed',
+        timeToLoad: 'N/A',
+        rowsReturned: 'N/A',
+        rowsAffected: 'N/A',
+    }); // [{id,tableName,status,timeToLoad,rowsReturned,rowsAffected}
+    const [isQueryExecuting,setIsQueryExecuting]=useState(false); 
+
+    // Local Variables
+    const states={theme,setTheme,openedQueryTabs,setOpenedQueryTabs,selectedTab,setSelectedTab,resultTableHeaders,setResultTableHeaders,resultTableRows,setResultTableRows,tableName,setTableName,
+    recentQueries,setRecentQueries,editorCode,setEditorCode,queryAnalytics,setQueryAnalytics,isQueryExecuting,setIsQueryExecuting,isPageLoading,setIsPageLoading}
+
     return (
-        <SqlContext.Provider value={{theme,setTheme}}>
+        <SqlContext.Provider value={states}>
             {props.children}
         </SqlContext.Provider>
     )
