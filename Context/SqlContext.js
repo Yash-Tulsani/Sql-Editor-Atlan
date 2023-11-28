@@ -13,19 +13,20 @@ const SqlContextComponent=(props)=>{
     const [resultTableHeaders,setResultTableHeaders]=useState([]);
     const [resultTableRows,setResultTableRows]=useState([]);
     const [tableName,setTableName]=useState(null);
-    const [recentQueries,setRecentQueries]=useState([]); // [{id,code,tableName,status,timeToLoad,rowsReturned,rowsAffected,resultColumns}
+    const [recentQueries,setRecentQueries]=useState([]);
     const [editorCode,setEditorCode]=useState("-- Write your SQL code here")
     const [queryAnalytics,setQueryAnalytics]=useState({
         status: 'Not Executed',
         timeToLoad: 'N/A',
         rowsReturned: 'N/A',
         rowsAffected: 'N/A',
-    }); // [{id,tableName,status,timeToLoad,rowsReturned,rowsAffected}
+    });
     const [isQueryExecuting,setIsQueryExecuting]=useState(false); 
+    const [hasQueryFailed,setHasQueryFailed]=useState(false);
 
     // Local Variables
     const states={theme,setTheme,openedQueryTabs,setOpenedQueryTabs,selectedTab,setSelectedTab,resultTableHeaders,setResultTableHeaders,resultTableRows,setResultTableRows,tableName,setTableName,
-    recentQueries,setRecentQueries,editorCode,setEditorCode,queryAnalytics,setQueryAnalytics,isQueryExecuting,setIsQueryExecuting,isPageLoading,setIsPageLoading}
+    recentQueries,setRecentQueries,editorCode,setEditorCode,queryAnalytics,setQueryAnalytics,isQueryExecuting,setIsQueryExecuting,isPageLoading,setIsPageLoading,hasQueryFailed,setHasQueryFailed}
 
     return (
         <SqlContext.Provider value={states}>

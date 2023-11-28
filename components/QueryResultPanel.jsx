@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import QueryResultTable from './QueryResultsTable'
 import { SqlContext } from '@/Context/SqlContext'
 import { CircularProgress } from '@mui/material'
+import QueryFailed from './QueryFailed'
 
 const QueryResultPanel = () => {
 
   // Global States
-  const {theme,resultTableRows,setResultTableRows,isQueryExecuting}=useContext(SqlContext)
+  const {theme,resultTableRows,setResultTableRows,isQueryExecuting,hasQueryFailed}=useContext(SqlContext)
 
   // Local Variables
   const queryResultPanelClassName='query-result-panel'+' '+(theme=='dark'?'query-result-panel-dark':'query-result-panel-light')
@@ -16,17 +17,33 @@ const QueryResultPanel = () => {
   return (
     <div className={queryResultPanelClassName}>
         {
-          (isQueryExecuting?
+          // (hasQueryFailed)?
+          //   <QueryFailed/>:
+          //   (isQueryExecuting?
+          //     <div className="query-result-panel-loader">
+          //       <CircularProgress/>
+          //     </div>
+          //     :
+          //     ((resultTableRows && resultTableRows.length>0)?
+          //       <QueryResultTable/>
+          //       :
+          //       <div className={fallbackTextClassName}>{fallbackText}</div>
+          //     )
+          //   )
+
+          (isQueryExecuting)?
             <div className="query-result-panel-loader">
               <CircularProgress/>
             </div>
             :
-            ((resultTableRows && resultTableRows.length>0)?
-              <QueryResultTable/>
+            (hasQueryFailed)?
+              <QueryFailed/>
               :
-              <div className={fallbackTextClassName}>{fallbackText}</div>
-            )
-          )
+              ((resultTableRows && resultTableRows.length>0)?
+                <QueryResultTable/>
+                :
+                <div className={fallbackTextClassName}>{fallbackText}</div>
+              )
         }
     </div>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState, useContext, useRef } from "react"
 import QueryTab from "./QueryTab"
 import Image from "next/image"
 import SQLCodeEditor from "./SqlCodeEditor"
@@ -8,11 +8,13 @@ import { SqlContext } from "@/Context/SqlContext"
 import { delay } from "@/utils/helpers"
 
 const SqlPlayground = () => {
-    // Local States
+    // Local States 
 
     // Global states
     const {theme,openedQueryTabs,setOpenedQueryTabs,selectedTab,setSelectedTab,setResultTableHeaders,setResultTableRows,setTableName,recentQueries,setRecentQueries,
-    setQueryAnalytics,setIsQueryExecuting,setEditorCode}=useContext(SqlContext);
+    setQueryAnalytics,setIsQueryExecuting,setEditorCode,setHasQueryFailed}=useContext(SqlContext);
+
+    // Refs
 
     // Local Variables
     const SqlPlaygroundClassName=`sql-playground ${theme==='dark'?'sql-playground-dark':'sql-playground-light'}`
@@ -30,7 +32,6 @@ const SqlPlayground = () => {
     }
 
     const handleAddTabClick=()=>{
-        console.log('Add Tab Clicked')
         const updatedOpenedQueryTabs=[...openedQueryTabs];
         const newQuery={
                 id: 'Query '+(50+Math.floor(Math.random()*50)),
@@ -44,6 +45,7 @@ const SqlPlayground = () => {
         updatedOpenedQueryTabs.push(newQuery);
         setOpenedQueryTabs(updatedOpenedQueryTabs);
         setSelectedTab(updatedOpenedQueryTabs.length-1);
+
     }
 
 
@@ -62,6 +64,18 @@ const SqlPlayground = () => {
         await delay(1500);
 
         const query=openedQueryTabs[selectedTab];
+        if(query.code.trim()==='' || query.code.trim()==='-- Write your SQL code here'){
+            updatedQueryAnalytics={
+                status: 'Failed',
+                timeToLoad: `N/A`,  
+                rowsReturned: `N/A`,
+                rowsAffected: 'N/A'
+            }
+            setQueryAnalytics(updatedQueryAnalytics);
+            setIsQueryExecuting(false);
+            setHasQueryFailed(true);
+            return;
+        }
         const currentTableName=query.tableName;
         setTableName(currentTableName);
 
@@ -85,6 +99,7 @@ const SqlPlayground = () => {
         }
         setQueryAnalytics(updatedQueryAnalytics);
         setIsQueryExecuting(false);
+        setHasQueryFailed(false);
     }
 
     const handleClearCode=()=>{

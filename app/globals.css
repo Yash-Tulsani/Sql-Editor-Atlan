@@ -362,6 +362,49 @@ body{
   align-items: center;
 }
 
+.query-failed-container{
+  width: 100%;
+  height: 100%;
+  /* background-color: #16a34a; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.query-failed-message-container{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.query-failed-message-header{
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.query-failed-message-header-dark{
+  color: var(--dark-background-text-primary);
+}
+
+.query-failed-message-header-light{
+  color: var(--light-background-text-primary)
+}
+
+.query-failed-message{
+  font-size: 0.85rem;
+}
+
+.query-failed-message-dark{
+  color: var(--dark-background-text-secondary)
+}
+
+.query-failed-message-light{
+  color: var(--light-background-text-secondary)
+}
+
+
 .query-result-panel-fallback-text{
   width: 100%;
   display: flex;
@@ -464,12 +507,12 @@ body{
 
 .query-results-table-data-cells-dark{
   background-color: var(--dark-background-highlight);
-  color: var(--dark-background-text-secondary);
+  color: var(--dark-background-text-secondary) !important; 
 }
 
 .query-results-table-data-cells-light{
   background-color: var(--light-background-highlight);
-  color: var(--light-background-text-primary);
+  color: var(--light-background-text-primary) !important;
 }
 
 .query-results-table-data-row{
@@ -584,6 +627,7 @@ body{
   background-color: var(--dark-background-highlight);
   color: var(--dark-background-text-secondary);
 }
+
 
 
 /* Media queries */
