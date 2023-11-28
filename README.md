@@ -1,6 +1,6 @@
 # Atlan Frontend Task:
 
-**Link to the application:  [https://sql-editor-by-atlan.vercel.app/](https://atlan-front-end-assignment.vercel.app/)**
+**Link to the application:  [https://sql-editor-by-atlan.vercel.app/](https://sql-editor-by-atlan.vercel.app/)**
 
 
 # Overview
