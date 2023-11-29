@@ -1,56 +1,44 @@
 
 export const queryList=[
-    {
+      {
         id: 'Query 1',
-        code: 'SELECT * FROM categories;',
-        tableName: 'categories',
+        code: 'SELECT * FROM order_details;',
+        tableName: 'order_details',
+        resultFilePath: '/assets/data/json/order_details.json',
         status: 'Not Executed',
         timeToLoad: 'N/A',
         rowsReturned: 'N/A',
         rowsAffected: 'N/A',
         resultColumns:  [
-            { id: 'categoryID', label: 'Category ID', minWidth: 100 },
-            { id: 'description', label: 'Description', minWidth: 250 },
-            {
-              id: 'name',
-              label: 'Name',
-              minWidth: 100,
-              align: 'right',
-            }
-          ]
+          { id: 'orderID', label: 'Order ID', minWidth: 100 },
+          { id: 'productID', label: 'Product ID', minWidth: 100 },
+          { id: 'unitPrice', label: 'Unit Price', minWidth: 100 },
+          { id: 'quantity', label: 'Quantity', minWidth: 100 },
+          { id: 'discount', label: 'discount', minWidth: 100 },
           
+        ]
     },
     {
-        id: 'Query 2',
-        code: 'SELECT * FROM customers;',
-        tableName: 'customers',
-        status: 'Not Executed',
-        timeToLoad: 'N/A',
-        rowsReturned: 'N/A',
-        rowsAffected: 'N/A',
-        resultColumns:  [
-            { id: 'customerID', label: 'Customer ID', minWidth: 100 },
-            { id: 'companyName', label: 'Company Name', minWidth: 100 },
-            {
-              id: 'contactName',
-              label: 'Contact Name',
-              minWidth: 100,
-              align: 'right',
-            },
-            {
-                id: 'contactTitle',
-                label: 'Contact Title',
-                minWidth: 100,
-                align: 'right',
-            },
-            {
-                id: 'address',
-                label: 'Address',
-                minWidth: 170,
-                align: 'right',
-            }
-          ]
-    },
+      id: 'Query 2',
+      code: 'SELECT * FROM orders;',
+      tableName: 'orders',
+      resultFilePath: '/assets/data/json/orders.json',
+      status: 'Not Executed',
+      timeToLoad: 'N/A',
+      rowsReturned: 'N/A',
+      rowsAffected: 'N/A',
+      resultColumns:  [
+        { id: 'orderID', label: 'Order ID', minWidth: 100 },
+        { id: 'customerID', label: 'Customer ID', minWidth: 100 },
+        { id: 'employeeID', label: 'Employee whID', minWidth: 100 },
+        { id: 'requiredDate', label: 'Required Date', minWidth: 100 },
+        { id: 'shippedDate', label: 'Shipped Date', minWidth: 100 },
+        { id: 'shipVia', label: 'Ship Via', minWidth: 80 },
+        { id: 'freight', label: 'Freight', minWidth: 80 },
+        { id: 'shipName', label: 'Ship Name', minWidth: 80 },
+        { id: 'shipAddress', label: 'Ship Address', minWidth: 180 },
+      ]
+  },
     {
         id: 'Query 3',
         code: 'SELECT * FROM employee_territories;',
@@ -83,24 +71,56 @@ export const queryList=[
             { id: 'notes', label: 'Notes', minWidth: 180 },
           ]
     },
-    // {
-    //     id: 'Query 5',
-    //     code: 'SELECT * FROM order_details;',
-    //     resultFilePath: '/assets/data/json/order_details.json',
-    //     status: 'Not Executed',
-    //     timeToLoad: 'N/A',
-    //     rowsReturned: 'N/A',
-    //     rowsAffected: 'N/A'
-    // },
-    // {
-    //     id: 'Query 6',
-    //     code: 'SELECT * FROM orders;',
-    //     resultFilePath: '/assets/data/json/orders.json',
-    //     status: 'Not Executed',
-    //     timeToLoad: 'N/A',
-    //     rowsReturned: 'N/A',
-    //     rowsAffected: 'N/A'
-    // },
+    {
+      id: 'Query 5',
+      code: 'SELECT * FROM categories;',
+      tableName: 'categories',
+      status: 'Not Executed',
+      timeToLoad: 'N/A',
+      rowsReturned: 'N/A',
+      rowsAffected: 'N/A',
+      resultColumns:  [
+          { id: 'categoryID', label: 'Category ID', minWidth: 100 },
+          { id: 'description', label: 'Description', minWidth: 250 },
+          {
+            id: 'name',
+            label: 'Name',
+            minWidth: 100,
+            align: 'right',
+          }
+        ]    
+  },
+  {
+    id: 'Query 6',
+    code: 'SELECT * FROM customers;',
+    tableName: 'customers',
+    status: 'Not Executed',
+    timeToLoad: 'N/A',
+    rowsReturned: 'N/A',
+    rowsAffected: 'N/A',
+    resultColumns:  [
+        { id: 'customerID', label: 'Customer ID', minWidth: 100 },
+        { id: 'companyName', label: 'Company Name', minWidth: 100 },
+        {
+          id: 'contactName',
+          label: 'Contact Name',
+          minWidth: 100,
+          align: 'right',
+        },
+        {
+            id: 'contactTitle',
+            label: 'Contact Title',
+            minWidth: 100,
+            align: 'right',
+        },
+        {
+            id: 'address',
+            label: 'Address',
+            minWidth: 170,
+            align: 'right',
+        }
+      ]
+},
     // {
     //     id: 'Query 7',
     //     code: 'SELECT * FROM products;',

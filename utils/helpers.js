@@ -4,7 +4,7 @@ export const mergeObject = (obj) => {
         result = obj.join(' ');
     }
     else if(typeof obj === 'object'){
-        result = Object.values(obj).filter(val=>val!==null).join(' ');
+        result = Object.values(obj).filter(val=>(val!==null && val!='NULL')).join(' ');
     }
     else{
         result = obj;
