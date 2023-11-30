@@ -228,13 +228,15 @@ body{
 
 
 .sql-editor-fallback-text{
-  width: 100%;
+  width: calc(100% - 16px);
   height: calc(100% - 55px);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 400;
   font-size: 0.9rem;
+  text-align: center;
+  margin: 0 8px;
 }
 
 .sql-editor-fallback-text-dark{
@@ -363,25 +365,27 @@ body{
 }
 
 .query-failed-container{
-  width: 100%;
+  width: calc(100% - 16px);
   height: 100%;
-  /* background-color: #16a34a; */
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 3%;
+  margin: 0 8px;
 }
 
 .query-failed-message-container{
   display: flex;
   flex-direction: column;
   gap: 2px;
+  /* text-align: center; */
 }
 
 .query-failed-message-header{
   font-size: 0.95rem;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
+  /* text-align: center; */
 }
 
 .query-failed-message-header-dark{
@@ -394,6 +398,7 @@ body{
 
 .query-failed-message{
   font-size: 0.85rem;
+  text-align: justify;
 }
 
 .query-failed-message-dark{
@@ -411,6 +416,7 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .query-result-panel-fallback-text-dark{
@@ -478,9 +484,9 @@ body{
 }
 
 .query-results-table-head-cells,.query-results-table-pagination{
-  font-size: 0.9rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-size: 0.9rem !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
 }
 
 .query-results-table-pagination-dark{
@@ -654,10 +660,10 @@ body{
     height: 15px;
   }
   .sql-playground-execute-btn,.sql-playground-clear-btn{
-    width: 4.5rem;
+    width: 4rem;
     height: 60%;
     border-radius: 25px;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
   .sql-editor-fallback-text{
     font-weight: 400;
@@ -674,5 +680,74 @@ body{
   .sql-playground-query-tab-close-icon{
     width: 15px;
     height: 15px;
+  } 
+  .query-results-table-head-cells{
+    font-size: 0.8rem !important;
   }
+
+  .query-failed-message-header{
+    font-size: 0.85rem;
+  }
+
+  .recent-queries-header,.available-queries-header,.query-analytics-header{
+    font-size: 1rem;
+  }
+
+  .recent-query-id,.available-query-id,.query-analytics-id{
+    font-size: 0.7rem;
+  }
+
+  .recent-query-text,.available-query-text,.query-analytics-text{
+    font-size: 0.65rem;
+  }
+
+  .query-failed-message{
+    font-size: 0.75rem;
+  }
+
+  .query-failed-icon{
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* For devices smaller than 480px */
+
+@media screen and (max-width: 480px){
+  
+  .sql-editor-fallback-text{
+    font-size: 0.65rem;
+  }
+
+  .sql-playground-execute-btn, .sql-playground-clear-btn{
+    font-size: 0.5rem;
+    width: 3.5rem;
+    height: 50%;
+  }
+
+  .query-result-panel-fallback-text{
+    font-size: 0.65rem;
+  }
+
+  .recent-queries-header,.available-queries-header,.query-analytics-header{
+    font-size: 0.85rem;
+  }
+
+  .recent-query-id,.available-query-id,.query-analytics-id{
+    font-size: 0.6rem;
+  }
+
+  .recent-query-text,.available-query-text,.query-analytics-text{
+    font-size: 0.55rem;
+  }
+
+  .query-failed-message-header{
+    font-size: 0.75rem;
+  }
+
+  .query-failed-message{
+    font-size: 0.65rem;
+  }
+
+ 
 }

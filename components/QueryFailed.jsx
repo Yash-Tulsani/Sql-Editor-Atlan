@@ -12,10 +12,11 @@ const QueryFailed = () => {
      \n Try running a query from "Available Queries" section.`;
     const queryFailedMessageHeaderClassName= `query-failed-message-header query-failed-message-header-${theme}`;
     const queryFailedMessageClassName= `query-failed-message query-failed-message-${theme}`;
+    const queryFailedIconClassName='query-failed-icon'
 
   return (
     <div className='query-failed-container'>
-        <Image src='/assets/Images/failed.svg' alt='Failed' width={30} height={30}/>
+        <Image src='/assets/Images/failed.svg' className={queryFailedIconClassName} alt='Failed' width={30} height={30}/>
         <div className="query-failed-message-container">
             <div className={queryFailedMessageHeaderClassName}>{failedMessageHeader}</div>
             <div className={queryFailedMessageClassName}>

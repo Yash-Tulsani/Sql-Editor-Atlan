@@ -24,7 +24,6 @@ const SqlPlayground = () => {
     const handleCloseTab=(idx)=>{
         const updatedOpenedQueryTabs=[...openedQueryTabs];
         updatedOpenedQueryTabs.splice(idx,1);
-        // console.log(updatedQueries,queries)
         setOpenedQueryTabs(updatedOpenedQueryTabs);
         if(selectedTab==idx){
             setSelectedTab(updatedOpenedQueryTabs.length-1);
@@ -64,6 +63,11 @@ const SqlPlayground = () => {
         await delay(1500);
 
         const query=openedQueryTabs[selectedTab];
+
+        const updatedRecentQueries=[...recentQueries];
+        updatedRecentQueries.unshift(query);
+        setRecentQueries(updatedRecentQueries);
+
         if(query.code.trim()==='' || query.code.trim()==='-- Write your SQL code here'){
             updatedQueryAnalytics={
                 status: 'Failed',
@@ -86,10 +90,6 @@ const SqlPlayground = () => {
         const res=await fetch(url);
         const  resultRows=await res.json();
         setResultTableRows(resultRows);
-
-        const updatedRecentQueries=[...recentQueries];
-        updatedRecentQueries.unshift(query);
-        setRecentQueries(updatedRecentQueries);
 
         updatedQueryAnalytics={
             status: 'Succeeded',

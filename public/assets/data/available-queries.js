@@ -30,7 +30,7 @@ export const queryList=[
       resultColumns:  [
         { id: 'orderID', label: 'Order ID', minWidth: 100 },
         { id: 'customerID', label: 'Customer ID', minWidth: 100 },
-        { id: 'employeeID', label: 'Employee whID', minWidth: 100 },
+        { id: 'employeeID', label: 'Employee ID', minWidth: 100 },
         { id: 'requiredDate', label: 'Required Date', minWidth: 100 },
         { id: 'shippedDate', label: 'Shipped Date', minWidth: 100 },
         { id: 'shipVia', label: 'Ship Via', minWidth: 80 },

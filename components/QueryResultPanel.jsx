@@ -17,19 +17,6 @@ const QueryResultPanel = () => {
   return (
     <div className={queryResultPanelClassName}>
         {
-          // (hasQueryFailed)?
-          //   <QueryFailed/>:
-          //   (isQueryExecuting?
-          //     <div className="query-result-panel-loader">
-          //       <CircularProgress/>
-          //     </div>
-          //     :
-          //     ((resultTableRows && resultTableRows.length>0)?
-          //       <QueryResultTable/>
-          //       :
-          //       <div className={fallbackTextClassName}>{fallbackText}</div>
-          //     )
-          //   )
 
           (isQueryExecuting)?
             <div className="query-result-panel-loader">
