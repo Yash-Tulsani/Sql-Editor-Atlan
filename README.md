@@ -28,9 +28,12 @@ c) **Downloading of Data:** User can download table data in **JSON** and **CSV**
 d)  **Resizable Layout:** Application offers customizable and resizable layout.<br>
 e) **Dark and Light Mode** <br>
 f) **Recent Queries Executed and Analytics section.** <br>
+h) **Skeleton Layout for better User Experience** <br>
 
 4) **Data:** The data used in the application is obtained from [https://github.com/graphql-compose/graphql-compose-examples/tree/master/examples/northwind/data/csv](https://github.com/graphql-compose/graphql-compose-examples/tree/master/examples/northwind/data/csv), a github repository for mock data.
 5) **Available Queries:**<br>
+    `SELECT * FROM order_details;`<br>
+    `SELECT * FROM order`<br>
     `SELECT * FROM categories;`<br>
     `SELECT * FROM customers;`<br>
     `SELECT * FROM employee_territories;`<br>
