@@ -630,8 +630,21 @@ body{
 }
 
 .download-table-options-list{
+  
+}
+
+.download-table-options-list-dark{
   background-color: var(--dark-background-highlight);
   color: var(--dark-background-text-secondary);
+}
+
+.download-table-options-list-light{
+  background-color: var(--light-background-highlight);
+  color: var(--light-background-text-secondary);
+}
+
+.download-button{
+  margin: 0 5px;
 }
 
 
@@ -709,6 +722,15 @@ body{
     width: 20px;
     height: 20px;
   }
+
+  .download-button{
+    width: 45px;
+  }
+
+  .download-button svg{
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* For devices smaller than 480px */
@@ -747,6 +769,15 @@ body{
 
   .query-failed-message{
     font-size: 0.65rem;
+  }
+
+  .download-button{
+    width: 55px;
+  }
+
+  .download-button svg{
+    width: 15px;
+    height: 15px;
   }
 
  

@@ -70,6 +70,8 @@ export default function QueryResultsTable() {
   const resultTableDataCellsClassName=`query-results-table-data-cells ${theme==='dark'?'query-results-table-data-cells-dark':'query-results-table-data-cells-light'}`
   const resultTableFooterClassName=`query-results-table-footer ${theme==='dark'?'query-results-table-footer-dark':'query-results-table-footer-light'}`
   const resultTablePaginationClassName=`query-results-table-pagination ${theme==='dark'?'query-results-table-pagination-dark':'query-results-table-pagination-light'}`
+  const downloadTableOptionsListClassName=`download-table-options-list ${theme==='dark'?'download-table-options-list-dark':'download-table-options-list-light'}`
+  const downloadButtonClassName=`download-button ${theme==='dark'?'download-button-dark':'download-button-light'}`
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -113,7 +115,7 @@ export default function QueryResultsTable() {
         </Table>
       </TableContainer>
       <div className={resultTableFooterClassName}>
-        <Fab color="default" aria-label="download" size='small' onClick={handleDownloadBtnClick}>
+        <Fab color="default" aria-label="download" className={downloadButtonClassName}  size='small' onClick={handleDownloadBtnClick}>
           <DownloadIcon/>
         </Fab>  
         <Popover 
@@ -131,7 +133,7 @@ export default function QueryResultsTable() {
             horizontal: 'center',
           }}
         >
-          <List className='download-table-options-list'>
+          <List className={downloadTableOptionsListClassName}>
             <ListItem disablePadding onClick={handleDownloadCSV}>
               <ListItemButton sx={{gap:'0px'}}>
                 <ListItemIcon>
